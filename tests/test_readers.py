@@ -43,8 +43,5 @@ class TestConstrainedReader(unittest.TestCase):
         self.assertEqual(self.reader_base.data[2], self.reader_constrained.data[2])
         self.assertEqual(self.reader_base.data[3], self.reader_constrained.data[3])
 
-    def test_true(self):
-        self.assertEqual(False, True)
-
 if __name__ == '__main__':
     unittest.main()

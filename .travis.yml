@@ -1,5 +1,5 @@
 language: python
-python: 3.7
+python: 3.6
 
 # install packages
 install:
@@ -7,5 +7,5 @@ install:
 
 # command to run tests
 script:
-  - python3 setup.py test
-  - python3 setup.py sdist
+  - python setup.py test
+  - python setup.py sdist
