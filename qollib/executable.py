@@ -2,9 +2,10 @@
 import subprocess
 
 class Executable1D:
+
     """
     This class wraps an executable and its input in a class
-     the executable should only hx@ave one option you would like to vary the input for
+     the executable should only have one option you would like to vary the input for
     """
     def __init__(self, path, static_options, static_inputs, varied_option, varied_index):
         self.__path = path
@@ -20,7 +21,7 @@ class Executable1D:
      
      @param varied_inputs               input (string) related to the @member varied_option
     """
-    def create_exe(self, varied_inputs):
+    def __create_exe__(self, varied_inputs):
         arg_list = list()
         for i in range(self.__n_options):
             if i == self.__varied_index:
@@ -33,24 +34,25 @@ class Executable1D:
                 arg_list.append(self.__static_inputs[i])
         return arg_list
 
-    """ 
-    run the defined executable assuming the varied arguments are set
     """
-    def run(self):
-        if len(self.__args) < 3 :
-            raise Exception("NON-VALID EXECUTABLE")
-        subprocess.run(self.__args)
+    runs the defined executable, if input is given update the exe arguments with @param varied_inputs
 
-    """
-    runs the defined executable after updating the exe arguments with @param varied_inputs
-     
      @param varied_inputs               input (string) related to the @member varied_option
     """
-    def run(self, varied_inputs):
-        self.set_arguments(varied_inputs)
-        self.run()
+
+    def run(self, varied_inputs = None):
+        if varied_inputs is not None:
+            self.set_arguments(varied_inputs)
+        if len(self.__args) < 3 :
+            raise Exception("NON VALID 1D-EXECUTABLE")
+        subprocess.run(self.__args)
 
     # SETTERS
     def set_arguments(self, varied_inputs):
-        self.__args = self.create_exe(varied_inputs)
+        self.__args = self.__create_exe__(varied_inputs)
 
+
+
+class Executable1Dfunction:
+    def __init__(self, executable_1d, file_name):
+        pass
