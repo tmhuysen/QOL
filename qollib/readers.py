@@ -58,6 +58,7 @@ class ConstrainedReader(TsfReader):
     def __init__(self, file_name):
         super().__init__(file_name, 4, float)
 
+
     # GETTERS
     def get_data(self):
         return np.asarray(super().data)

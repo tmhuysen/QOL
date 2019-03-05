@@ -1,12 +1,14 @@
-# -*- coding: utf-8 -*-
 import subprocess
 
-class Executable1D:
+print("Imported qollib executable1D...")
 
+
+class Executable1D:
     """
     This class wraps an executable and its input in a class
      the executable should only have one option you would like to vary the input for
     """
+
     def __init__(self, path, static_options, static_inputs, varied_option, varied_index):
         self.__path = path
         self.__static_options = static_options
@@ -21,6 +23,7 @@ class Executable1D:
      
      @param varied_inputs               input (string) related to the @member varied_option
     """
+
     def __create_exe__(self, varied_inputs):
         arg_list = list()
         for i in range(self.__n_options):
@@ -43,16 +46,10 @@ class Executable1D:
     def run(self, varied_inputs = None):
         if varied_inputs is not None:
             self.set_arguments(varied_inputs)
-        if len(self.__args) < 3 :
+        if len(self.__args) < 3:
             raise Exception("NON VALID 1D-EXECUTABLE")
         subprocess.run(self.__args)
 
     # SETTERS
     def set_arguments(self, varied_inputs):
         self.__args = self.__create_exe__(varied_inputs)
-
-
-
-class Executable1Dfunction:
-    def __init__(self, executable_1d, file_name):
-        pass

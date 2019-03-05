@@ -1,6 +1,6 @@
 import unittest
 import qollib.readers as readers
-from init import libpath
+from qollib.config import libpath
 
 
 class TestTsfReader(unittest.TestCase):
@@ -25,6 +25,7 @@ class TestTsfReader(unittest.TestCase):
         self.assertEqual(column2, self.reader.data[2])
         self.assertEqual(column3, self.reader.data[3])
 
+
 class TestConstrainedReader(unittest.TestCase):
 
     def setUp(self):
@@ -42,6 +43,7 @@ class TestConstrainedReader(unittest.TestCase):
         self.assertEqual(self.reader_base.data[1], self.reader_constrained.data[1])
         self.assertEqual(self.reader_base.data[2], self.reader_constrained.data[2])
         self.assertEqual(self.reader_base.data[3], self.reader_constrained.data[3])
+
 
 if __name__ == '__main__':
     unittest.main()
