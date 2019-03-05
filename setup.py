@@ -8,6 +8,7 @@ setup(name = 'QOL',
       author_email = 'tobias.huysentruyt@minimoa.net',
       description = 'Quality of life',
       packages = find_packages(exclude = ['tests']),
-      test_suite="tests",
+      test_suite = "tests",
       long_description = open('README.md').read(),
-      zip_safe = False)
+      zip_safe = False,
+      install_requires = ['numpy'])

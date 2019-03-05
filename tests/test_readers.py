@@ -1,6 +1,6 @@
 import unittest
 import qollib.readers as readers
-from qollib.config import libpath
+from config import libpath
 
 
 class TestTsfReader(unittest.TestCase):
