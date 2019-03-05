@@ -7,3 +7,5 @@ venv/*
 
 dist
 QOL.egg-info
+
+personalgen

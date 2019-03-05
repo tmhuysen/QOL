@@ -1,6 +1,8 @@
 import warnings
 import numpy as np
 
+from qollib.stringmethods import newlined_tabbed_data_string_to_dataset
+
 print("Imported qollib readers...")
 
 
@@ -20,30 +22,18 @@ class TsfReader:  # tab separated file reader
     """
 
     def __data_init__(self):
-        f = open(self.__file_name, "r")
-        first_line = f.readline()
-        line_length = len(first_line.split("\t"))
+        file = open(self.__file_name, "r")
+        data = file.read()
+        file.close()
+        data_sets = newlined_tabbed_data_string_to_dataset(data, self.__define_type)
         if self.__n_sets is None:
-            self.__n_sets = line_length
+            self.__n_sets = len(data_sets)
         else:
-            if line_length != self.__n_sets:
+            if len(data_sets) != self.__n_sets:
                 warnings.warn("expected number of data sets does not match the data file, %d instead of %d"
-                              % (line_length, self.__n_sets))
-        f.seek(0) # go back to start
-        total_set = list()
-        for i in range(line_length):
-            total_set.append(list())
-        for line in f:
+                              % (len(data_sets), self.__n_sets))
 
-            split_line = line.strip("\n").split("\t")
-
-            for i in range(line_length):
-                if self.__define_type is None:
-                    total_set[i].append(split_line[i])
-                else:
-                    total_set[i].append(self.__define_type(split_line[i]))
-        f.close()
-        return tuple(total_set)
+        return tuple(data_sets)
 
     # GETTERS
     def number_of_sets(self):
@@ -57,7 +47,6 @@ class ConstrainedReader(TsfReader):
 
     def __init__(self, file_name):
         super().__init__(file_name, 4, float)
-
 
     # GETTERS
     def get_data(self):

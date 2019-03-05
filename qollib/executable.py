@@ -9,7 +9,7 @@ class Executable1D:
      the executable should only have one option you would like to vary the input for
     """
 
-    def __init__(self, path, static_options, static_inputs, varied_option, varied_index):
+    def __init__(self, path, static_options, static_inputs, varied_option, varied_index, return_data = False):
         self.__path = path
         self.__static_options = static_options
         self.__static_inputs = static_inputs
@@ -17,6 +17,7 @@ class Executable1D:
         self.__varied_index = varied_index
         self.__n_options = len(static_options) + 1
         self.__args = tuple()
+        self.return_data = return_data
 
     """ 
     creates a runnable argument for an executable
@@ -48,7 +49,10 @@ class Executable1D:
             self.set_arguments(varied_inputs)
         if len(self.__args) < 3:
             raise Exception("NON VALID 1D-EXECUTABLE")
-        subprocess.run(self.__args)
+        if self.return_data:
+            return subprocess.check_output(self.__args, universal_newlines = True)
+        else:
+            subprocess.run(self.__args)
 
     # SETTERS
     def set_arguments(self, varied_inputs):
