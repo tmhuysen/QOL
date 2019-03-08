@@ -22,18 +22,31 @@ Transform a string into an tuple of n+1 lists of m elements
 
 
 def newlined_tabbed_data_string_to_dataset(string, define_type = None):
-    string_list = string.split("\n")
-    line_length = len(string_list[0].split("\t"))
+
+    string_list = string.strip("\n").split("\n")
+    index = 0
+    is_start_correct = True
+    if define_type is not None:
+        while is_start_correct:
+            try:
+                x = string_list[index].split("\t")
+                for t in x:
+                    define_type(t)
+                is_start_correct = False
+            except ValueError:
+                index += 1
+    line_length = len(string_list[index].split("\t"))
     total_set = list()
     for i in range(line_length):
         total_set.append(list())
-    for line in string_list:
-
+    for j in range(index, len(string_list)):
+        line = string_list[j]
         split_line = line.strip("\n").split("\t")
 
         for i in range(line_length):
             if define_type is None:
                 total_set[i].append(split_line[i])
             else:
+
                 total_set[i].append(define_type(split_line[i]))
     return tuple(total_set)

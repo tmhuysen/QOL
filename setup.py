@@ -11,4 +11,4 @@ setup(name = 'QOL',
       test_suite = "tests",
       long_description = open('README.md').read(),
       zip_safe = False,
-      install_requires = ['numpy'])
+      install_requires = ['numpy', 'scipy'])
