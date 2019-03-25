@@ -3,7 +3,6 @@ import os
 import sys
 from qollib.DataSet import ConstrainedData
 from qollib.executable import Executable1D, ConstrainedExeWrapper
-from qollib.graphing import ConstrainedGrapher
 from qollib.interpolation import IterativeInterpolator
 
 
